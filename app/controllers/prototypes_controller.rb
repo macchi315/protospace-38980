@@ -1,5 +1,6 @@
 class PrototypesController < ApplicationController
-  before_action :move_to_index, except: [:index, :show]
+  #before_action :move_to_index, except: [:show, :index]  new edit update destroyがmove_to_indexに行く
+  before_action :move_to_index, only: [:destroy, :edit, :update]
 
   def index
     @prototype = Prototype.all
@@ -57,7 +58,7 @@ class PrototypesController < ApplicationController
     end
   end
 
-  #↓これがなんでだめか後でメンターに質問。@prototypeが空になる理屈がわからない‥
+  #↓これがなんでだめか後で質問。@prototypeが空になる理屈がわからない‥
   #def move_to_index
   #  unless current_user.id == @prototype.user_id
   #    redirect_to action: :index
